@@ -1,0 +1,63 @@
+@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="_spaceTheme"/>
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout Class="layout-override">
+    <MudDrawerContainer>
+        <MudDrawer @bind-Open="@_drawerOpen" Variant="@DrawerVariant.Persistent">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h6">glowies</MudText>
+            </MudDrawerHeader>
+            <NavMenu />
+        </MudDrawer>
+
+
+        <MudMainContent Class="main-content-override">
+            <LeftFAB @onclick="@((e) => DrawerToggle())" />
+
+            <MudContainer MaxWidth="MaxWidth.Medium">
+                @Body
+            </MudContainer>
+        </MudMainContent>
+    </MudDrawerContainer>
+</MudLayout>
+
+<style>
+    .layout-override {
+        height: 100vh;
+    }
+    .main-content-override {
+        padding-top: 8px;
+    }
+</style>
+
+@code
+{
+    MudTheme _spaceTheme = new MudTheme()
+    {
+        Palette = new Palette()
+        {
+            Primary = "#ffffff", //"#bb86fc",
+            Secondary = "#03dac6",
+            Background = Colors.Grey.Darken4,
+            Surface = Colors.Grey.Darken4,
+            Error = "#cf6679",
+            TextPrimary = "#ffffff",
+            TextSecondary = "#000000",
+            PrimaryContrastText = "#000000",
+            DrawerBackground = "#ffffff",
+            DrawerText = "#000000",
+            DrawerIcon = "#000000",
+
+        }
+    };
+
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

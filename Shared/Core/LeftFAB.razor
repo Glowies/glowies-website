@@ -1,0 +1,39 @@
+﻿<div class="fab-paper-wrapper">
+    <MudPaper Outlined="true" Class="rounded-0 rounded-r-xl fab-paper" Elevation="3">
+        <MudIconButton
+                       Color="Color.Primary"
+                       Variant="Variant.Text"
+                       Icon="@Icons.Material.Outlined.Menu"
+                       aria-label="menu"
+                       Class="fab-button-override"
+                       Size="Size.Medium"
+                       @attributes="InputAttributes" />
+    </MudPaper>
+</div>
+
+<style>
+    .fab-paper-wrapper {
+        position: fixed;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+    }
+    .fab-paper {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        border: 2px solid white;
+        background-color: rgba(255, 255, 255, 0);
+    }
+    .fab-button-override {
+        margin: 0px;
+    }
+
+</style>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IDictionary<string, object> InputAttributes { get; set; }
+}
