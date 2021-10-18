@@ -13,15 +13,13 @@
             <NavMenu />
         </MudDrawer>
 
-
-        <MudMainContent Class="main-content-override">
-            <LeftFAB @onclick="@((e) => DrawerToggle())" />
-
-            <MudContainer MaxWidth="MaxWidth.Medium">
-                @Body
-            </MudContainer>
-        </MudMainContent>
+        <LeftFAB @onclick="@((e) => DrawerToggle())" />
     </MudDrawerContainer>
+
+    <MudMainContent Class="main-content-override">
+        @* Wrap in MudContainer for proper padding/margins *@
+        @Body
+    </MudMainContent>
 </MudLayout>
 
 <style>
@@ -29,7 +27,8 @@
         height: 100vh;
     }
     .main-content-override {
-        padding-top: 8px;
+        height: 100%;
+        padding: 8px;
     }
 </style>
 
@@ -54,7 +53,7 @@
         }
     };
 
-    bool _drawerOpen = true;
+    bool _drawerOpen = false;
 
     void DrawerToggle()
     {

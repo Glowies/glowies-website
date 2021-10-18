@@ -14,8 +14,14 @@
 
   <ItemGroup>
     <None Remove="Shared\Core\" />
+    <None Remove="Shared\SeedSharp\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\Core\" />
+    <Folder Include="Shared\SeedSharp\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\js\" />
   </ItemGroup>
 </Project>

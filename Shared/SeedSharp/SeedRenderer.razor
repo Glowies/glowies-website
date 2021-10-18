@@ -1,0 +1,63 @@
+﻿@inject IJSRuntime JS
+@implements IDisposable
+
+<div id="@_wrapperId" @ref="_wrapperDiv">
+    <BECanvas Width="@_width" Height="@_height" @ref="_canvasReference"></BECanvas>
+</div>
+
+<style>
+    #seed-renderer-wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex
+    }
+</style>
+
+@code
+    {
+    private Canvas2DContext _context;
+    private string _wrapperId = "seed-renderer-wrapper";
+    private long _width = 640;
+    private long _height = 360;
+    private DotNetObjectReference<SeedRenderer> _objRef;
+    private bool _firstRender = true;
+
+    protected BECanvasComponent _canvasReference;
+    protected ElementReference _wrapperDiv;
+
+    [JSInvokable()]
+    public void OnWrapperResize(float width, float height)
+    {
+        _width = (long)width;
+        _height = (long)height;
+        StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_firstRender)
+        {
+            _firstRender = false;
+            _objRef = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("AddResizeListener", _wrapperId, _objRef, "OnWrapperResize");
+        }
+
+        this._context = await this._canvasReference.CreateCanvas2DAsync();
+        await this._context.SetFillStyleAsync("white");
+        await this._context.SetStrokeStyleAsync("white");
+
+        await this._context.MoveToAsync(90, 130);
+        await this._context.LineToAsync(95, 25);
+        await this._context.LineToAsync(150, 80);
+        await this._context.LineToAsync(205, 25);
+        await this._context.LineToAsync(210, 130);
+
+        await this._context.SetLineWidthAsync(15);
+        await this._context.StrokeAsync();
+    }
+
+    public void Dispose()
+    {
+        _objRef?.Dispose();
+    }
+}
