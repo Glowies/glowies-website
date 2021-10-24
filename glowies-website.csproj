@@ -15,11 +15,13 @@
   <ItemGroup>
     <None Remove="Shared\Core\" />
     <None Remove="Shared\SeedSharp\" />
+    <None Remove="SeedSharp\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\Core\" />
-    <Folder Include="Shared\SeedSharp\" />
+    <Folder Include="Shared\Seed\" />
     <Folder Include="wwwroot\js\" />
+    <Folder Include="SeedSharp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />

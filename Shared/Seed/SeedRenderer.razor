@@ -21,6 +21,7 @@
     private long _height = 360;
     private DotNetObjectReference<SeedRenderer> _objRef;
     private bool _firstRender = true;
+    private Canvas2DSeedRenderer _seedRenderer;
 
     protected BECanvasComponent _canvasReference;
     protected ElementReference _wrapperDiv;
@@ -30,7 +31,15 @@
     {
         _width = (long)width;
         _height = (long)height;
+
+        _seedRenderer.SetViewportScale(new Vector2(width, height));
+
         StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        _seedRenderer = new Canvas2DSeedRenderer(_context, new Plant());
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -42,18 +51,13 @@
             await JS.InvokeVoidAsync("AddResizeListener", _wrapperId, _objRef, "OnWrapperResize");
         }
 
-        this._context = await this._canvasReference.CreateCanvas2DAsync();
-        await this._context.SetFillStyleAsync("white");
-        await this._context.SetStrokeStyleAsync("white");
+        _context = await _canvasReference.CreateCanvas2DAsync();
+        _seedRenderer.Context = _context;
 
-        await this._context.MoveToAsync(90, 130);
-        await this._context.LineToAsync(95, 25);
-        await this._context.LineToAsync(150, 80);
-        await this._context.LineToAsync(205, 25);
-        await this._context.LineToAsync(210, 130);
+        await _context.SetFillStyleAsync("white");
+        await _context.SetStrokeStyleAsync("white");
 
-        await this._context.SetLineWidthAsync(15);
-        await this._context.StrokeAsync();
+        await _seedRenderer.RenderAsync();
     }
 
     public void Dispose()
