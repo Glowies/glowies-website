@@ -10,33 +10,21 @@ namespace SeedSharp
             Root = new RootSegment()
             {
                 LocalPosition = 0,
-                Angle = (float) Math.PI / 2,
+                Angle = MathF.PI / 2,
                 Length = 1,
                 StartWidth = .1f,
                 EndWidth = .1f
             };
+        }
 
-            var branch = new PlantSegment()
+        public int SegmentCount
+        {
+            get
             {
-                LocalPosition = 1f,
-                Angle = (float)Math.PI / 8,
-                Length = 2,
-                StartWidth = .1f,
-                EndWidth = .1f
-            };
-
-            var subbranch = new PlantSegment()
-            {
-                LocalPosition = 1f,
-                Angle = (float)Math.PI / 8,
-                Length = 1,
-                StartWidth = .1f,
-                EndWidth = .1f
-            };
-
-            Root.SetNext(branch);
-            branch.AddChild(subbranch);
-
+                if (Root is null)
+                    return 0;
+                return Root.SegmentCount;
+            }
         }
     }
 }

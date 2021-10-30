@@ -2,6 +2,7 @@
 using System.Numerics;
 using System.Threading.Tasks;
 using Blazor.Extensions.Canvas.Canvas2D;
+using MudBlazor;
 using SeedSharp;
 
 namespace glowies_website.Shared.Seed
@@ -15,6 +16,31 @@ namespace glowies_website.Shared.Seed
             Context = context;
         }
 
+        public override void Render()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override async Task RenderAsync()
+        {
+            await Context.ClearRectAsync(0, 0, 9001, 9001);
+
+            await Context.SetFillStyleAsync("white");
+            await Context.SetStrokeStyleAsync("white");
+
+            await Context.SetLineWidthAsync(2);
+            await Context.BeginPathAsync();
+
+            await Context.BeginBatchAsync();
+
+            await base.RenderAsync();
+
+            await Context.EndBatchAsync();
+
+            await Context.ClosePathAsync();
+            await Context.StrokeAsync();
+        }
+
         public override void DrawLine(Vector2 p1, Vector2 p2)
         {
             throw new NotImplementedException();
@@ -22,16 +48,16 @@ namespace glowies_website.Shared.Seed
 
         public override async Task DrawLineAsync(Vector2 p1, Vector2 p2)
         {
+            if (Context is null)
+                return;
+
             await Context.MoveToAsync(p1.X, p1.Y);
             await Context.LineToAsync(p2.X, p2.Y);
-
-            await Context.SetLineWidthAsync(4);
-            await Context.StrokeAsync();
         }
 
         public override void SetViewportScale(Vector2 scale)
         {
-            var scaleFactor = 8;
+            var scaleFactor = 16;
 
             var min = MathF.Min(scale.X, scale.Y);
 

@@ -1,7 +1,9 @@
 ﻿@inject IJSRuntime JS
 @implements IDisposable
+@using System.Timers
 
 <div id="@_wrapperId" @ref="_wrapperDiv">
+    <MudButton Class="pause-button" @onclick="TogglePause">Pause</MudButton>
     <BECanvas Width="@_width" Height="@_height" @ref="_canvasReference"></BECanvas>
 </div>
 
@@ -9,7 +11,11 @@
     #seed-renderer-wrapper {
         height: 100%;
         width: 100%;
-        display: flex
+    }
+    .pause-button {
+        position: fixed;
+        right: 8px;
+        bottom: 8px;
     }
 </style>
 
@@ -22,6 +28,9 @@
     private DotNetObjectReference<SeedRenderer> _objRef;
     private bool _firstRender = true;
     private Canvas2DSeedRenderer _seedRenderer;
+    private PlantIterator _plantIterator;
+    private Timer _simulationTimer;
+    private DateTime _lastUpdateTime;
 
     protected BECanvasComponent _canvasReference;
     protected ElementReference _wrapperDiv;
@@ -39,7 +48,32 @@
 
     protected override void OnInitialized()
     {
-        _seedRenderer = new Canvas2DSeedRenderer(_context, new Plant());
+        var plant = new Plant();
+        _seedRenderer = new Canvas2DSeedRenderer(_context, plant);
+        _plantIterator = new PlantIterator(plant);
+
+        // Start main update loop timer
+        _simulationTimer = new Timer(40);
+        _lastUpdateTime = DateTime.Now;
+        _simulationTimer.Elapsed += Update;
+        _simulationTimer.AutoReset = true;
+        _simulationTimer.Enabled = true;
+    }
+
+    private async void Update(Object _, ElapsedEventArgs e)
+    {
+        var deltaTime = (float) (e.SignalTime - _lastUpdateTime).TotalMilliseconds;
+
+        try
+        {
+            _plantIterator.Iterate(deltaTime);
+            await _seedRenderer.RenderAsync();
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine($"Error while rendering plant: \n{ex.Message}");
+            _simulationTimer.Enabled = false;
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -53,15 +87,15 @@
 
         _context = await _canvasReference.CreateCanvas2DAsync();
         _seedRenderer.Context = _context;
-
-        await _context.SetFillStyleAsync("white");
-        await _context.SetStrokeStyleAsync("white");
-
-        await _seedRenderer.RenderAsync();
     }
 
     public void Dispose()
     {
         _objRef?.Dispose();
+    }
+
+    private void TogglePause()
+    {
+        _simulationTimer.Enabled = !_simulationTimer.Enabled;
     }
 }

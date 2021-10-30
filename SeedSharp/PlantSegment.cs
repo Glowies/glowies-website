@@ -26,7 +26,12 @@ namespace SeedSharp
             get => _angle;
             set
             {
-                _angle = value;
+                var angle = value;
+                for (; -MathF.PI >= angle || angle > MathF.PI;
+                    angle -= 2 * MathF.PI * MathF.Sign(angle))
+                { }    
+
+                _angle = angle;
                 _isDirty = true;
             }
         }
@@ -47,11 +52,29 @@ namespace SeedSharp
         {
             get
             {
-                if (Children == null)
-                    return 0;
-                return Children.Count;
+                var nextCount = Next is null ? 0 : 1;
+                if (Children is null)
+                    return nextCount;
+                return Children.Count + nextCount;
             }
             private set { }
+        }
+        public int SegmentCount
+        {
+            get
+            {
+                var count = 1;
+                count += Next is null ? 0 : Next.SegmentCount;
+                if (Children is not null)
+                {
+                    foreach(var child in Children)
+                    {
+                        count += child.SegmentCount;
+                    }
+                }
+
+                return count;
+            }
         }
 
         public virtual Matrix3x2 LocalToWorldMatrix {

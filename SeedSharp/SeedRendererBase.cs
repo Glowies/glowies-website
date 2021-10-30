@@ -19,7 +19,7 @@ namespace SeedSharp
 
         public abstract Task DrawLineAsync(Vector2 p1, Vector2 p2);
 
-        public void Render()
+        public virtual void Render()
         {
             Render(RenderPlant.Root);
         }
@@ -46,7 +46,7 @@ namespace SeedSharp
             DrawLine(p1World, p2World);
         }
 
-        public async Task RenderAsync()
+        public virtual async Task RenderAsync()
         {
             await RenderAsync(RenderPlant.Root);
         }

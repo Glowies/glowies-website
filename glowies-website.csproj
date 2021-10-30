@@ -4,6 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Blazor.Extensions.Canvas" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.10" />
