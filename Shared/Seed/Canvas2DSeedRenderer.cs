@@ -57,7 +57,7 @@ namespace glowies_website.Shared.Seed
 
         public override void SetViewportScale(Vector2 scale)
         {
-            var scaleFactor = 16;
+            var scaleFactor = 32;
 
             var min = MathF.Min(scale.X, scale.Y);
 

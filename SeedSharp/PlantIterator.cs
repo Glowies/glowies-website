@@ -54,15 +54,20 @@ namespace SeedSharp
 
             float stepFactor = timeStep / 1000;
 
-            const float branchInterval = 1.618f;
+            const float branchInterval = 2.7f;
             const float branchAngle = MathF.PI / 5;
 
             var angle = segment.Angle;
-            float growthSpeed = parentSpeed / 2 * MathF.Cos(angle / 2);
+            float growthSpeed = parentSpeed
+                * MathF.Pow(MathF.Cos(angle / 2), 2);
 
             var prevLength = segment.Length;
-            if(segment != TargetPlant.Root)
+            if (segment != TargetPlant.Root)
+            {
+                // Scale growth depending on the number of children
+                growthSpeed /= MathF.Log(segment.Parent.ChildrenCount, 2f);
                 segment.Length += stepFactor * growthSpeed;
+            }
 
             // Recursive calls
             Iterate(timeStep, segment.Next, growthSpeed);
@@ -81,7 +86,6 @@ namespace SeedSharp
                 for(float i = 0; i < pow; i++)
                 {
                     var position = 1f / pow / 2f + i / pow;
-                    Console.WriteLine(position);
                     var leftBranch = new PlantSegment()
                     {
                         Angle = -branchAngle,
