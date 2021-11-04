@@ -24,8 +24,24 @@ namespace glowies_website.Shared.Seed
         public override async Task RenderAsync()
         {
             await Context.ClearRectAsync(0, 0, 9001, 9001);
+            await Context.SetLineCapAsync(LineCap.Round);
 
-            await Context.SetFillStyleAsync("white");
+            // render leaf
+            await Context.SetStrokeStyleAsync("grey");
+
+            await Context.SetLineWidthAsync(90);
+            await Context.BeginPathAsync();
+
+            await Context.BeginBatchAsync();
+
+            await base.RenderAsync();
+
+            await Context.EndBatchAsync();
+
+            await Context.ClosePathAsync();
+            await Context.StrokeAsync();
+
+            // render veins
             await Context.SetStrokeStyleAsync("white");
 
             await Context.SetLineWidthAsync(2);
