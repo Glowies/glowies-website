@@ -25,8 +25,12 @@
     <Folder Include="Shared\Core\" />
     <Folder Include="Shared\Seed\" />
     <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\assets\" />
+    <Folder Include="wwwroot\assets\img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />
+    <Content Remove="wwwroot\images\" />
+    <Content Remove="wwwroot\assets\img\" />
   </ItemGroup>
 </Project>

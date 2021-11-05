@@ -1,0 +1,132 @@
+﻿@page "/about" 
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8">
+    <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+    <MudText Typo="Typo.h1" Align="Align.Center" GutterBottom="true">About</MudText>
+
+    <MudText Typo="Typo.h4" Align="Align.Left" GutterBottom="true">Author</MudText>
+
+    <MudCard Elevation="16">
+        <MudCardHeader>
+            <CardHeaderAvatar>
+                <MudAvatar Image="assets/img/jiji-blackandwhite.gif"
+                           Alt="Profile picture of Jiji from Kiki's Delivery Service." />
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.body1"><b>Oktay Çomu</b></MudText>
+                <MudText Typo="Typo.body2">Game Developer</MudText>
+            </CardHeaderContent>
+            <CardHeaderActions>
+                <MudIconButton Link="https://github.com/Glowies"
+                               Target="_blank"
+                               rel="noopener noreferrer"
+                               Icon="@Icons.Custom.Brands.GitHub"
+                               Color="Color.Primary" />
+                <MudIconButton Link="https://ca.linkedin.com/in/glowies"
+                               Target="_blank"
+                               rel="noopener noreferrer"
+                               Icon="@Icons.Custom.Brands.LinkedIn"
+                               Color="Color.Primary" />
+                <MudIconButton Link="mailto:6l0w135@gmail.com"
+                               Target="_blank"
+                               rel="noopener noreferrer"
+                               Icon="@Icons.Material.Filled.Mail"
+                               Color="Color.Primary" />
+            </CardHeaderActions>
+        </MudCardHeader>
+        <MudCardContent>
+            For business inquiries:
+            <MudChip Size="Size.Small" Variant="Variant.Outlined">
+                <MudLink Href="mailto:6l0w135@gmail.com"
+                         Underline="Underline.Always"
+                         Typo="Typo.caption">
+                    6l0w135@gmail.com
+                </MudLink>
+            </MudChip>
+        </MudCardContent>
+    </MudCard>
+
+    <MudText Typo="Typo.h4" Align="Align.Left" GutterBottom="true" Class="mt-8">Developed Using</MudText>
+
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard Elevation="16">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudIcon Color="Color.Primary" Icon="blazor-icon" />
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.body1">Blazor</MudText>
+                        <MudText Typo="Typo.body2">Web Framework</MudText>
+                    </CardHeaderContent>
+                    <CardHeaderActions>
+                        <MudIconButton Link="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor"
+                                       Target="_blank"
+                                       rel="noopener noreferrer"
+                                       Icon="@Icons.Material.Filled.Link"
+                                       Color="Color.Primary" />
+                    </CardHeaderActions>
+                </MudCardHeader>
+            </MudCard>
+        </MudItem>
+
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard Elevation="16">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudIcon Color="Color.Primary" Icon="@Icons.Custom.Brands.MudBlazor" />
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.body1">MudBlazor</MudText>
+                        <MudText Typo="Typo.body2">Material UI for Blazor</MudText>
+                    </CardHeaderContent>
+                    <CardHeaderActions>
+                        <MudIconButton Link="https://mudblazor.com/"
+                                       Target="_blank"
+                                       rel="noopener noreferrer"
+                                       Icon="@Icons.Material.Filled.Link"
+                                       Color="Color.Primary" />
+                    </CardHeaderActions>
+                </MudCardHeader>
+            </MudCard>
+        </MudItem>
+
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard Elevation="16">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudIcon Color="Color.Primary" Icon="fab fa-unity" />
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.body1">Unity</MudText>
+                        <MudText Typo="Typo.body2">Game and Graphics Engine</MudText>
+                    </CardHeaderContent>
+                    <CardHeaderActions>
+                        <MudIconButton Link="https://unity.com/"
+                                       Target="_blank"
+                                       rel="noopener noreferrer"
+                                       Icon="@Icons.Material.Filled.Link"
+                                       Color="Color.Primary" />
+                    </CardHeaderActions>
+                </MudCardHeader>
+            </MudCard>
+        </MudItem>
+
+    </MudGrid>
+</MudContainer>
+
+<style>
+    .blazor-icon::before {
+        content: "icn";
+        color: transparent;
+        display: inline-block;
+        background-image: url("assets/img/blazor-white.svg");
+        background-repeat: no-repeat;
+        fill: white;
+        background-size: contain;
+    }
+</style>
+
+@code {
+
+}
