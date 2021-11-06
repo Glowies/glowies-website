@@ -27,11 +27,13 @@
 <style>
     .layout-override {
         height: 100vh;
+        overflow: no-display;
     }
     .main-content-override {
-        height: 100vh;
-        padding: 8px;
-        overflow: scroll;
+        height: 100%;
+        padding: 0px;
+        overflow-x: no-display;
+        overflow-y: auto;
     }
     .flex-drawer-header {
         display: flex;
@@ -51,7 +53,7 @@
         {
             Primary = "#ffffff", //"#bb86fc",
             Secondary = "#03dac6",
-            Background = Colors.Grey.Darken4,
+            Background = Colors.Grey.Darken4, // this is #212121
             Surface = Colors.Grey.Darken4,
             Error = "#cf6679",
             TextPrimary = "#ffffff",
