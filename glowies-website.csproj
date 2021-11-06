@@ -20,6 +20,7 @@
   <ItemGroup>
     <None Remove="Shared\Core\" />
     <None Remove="Shared\SeedSharp\" />
+    <None Remove="Pages\Games\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\Core\" />
@@ -27,10 +28,13 @@
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\assets\" />
     <Folder Include="wwwroot\assets\img\" />
+    <Folder Include="Pages\Games\" />
+    <Folder Include="wwwroot\assets\img\swiftsnake\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />
     <Content Remove="wwwroot\images\" />
     <Content Remove="wwwroot\assets\img\" />
+    <Content Remove="wwwroot\assets\img\swiftsnake\" />
   </ItemGroup>
 </Project>
