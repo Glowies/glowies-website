@@ -21,10 +21,39 @@ function LoadCustomJavaScriptFile(jsPath, callback) {
 }
 
 function LoadUnityBuild(containerId, buildName) {
-    var buildPath = "unity-builds/" + buildName;
-    LoadCustomJavaScriptFile(buildPath + "/Build/UnityLoader.js", function () {
-        var configPath = buildPath + "/Build/" + buildName + ".json";
-        console.log(configPath);
-        UnityLoader.instantiate(containerId, configPath);
+    if (typeof instanceMap === "undefined") {
+        instanceMap = {}
+    }
+
+    var buildPath = "unity-builds/" + buildName + "/";
+    var loaderPath = buildPath + "Build/" + buildName + ".loader.js";
+    LoadCustomJavaScriptFile(loaderPath, function () {
+        // Quit old instance if it already exists
+        if (instanceMap.hasOwnProperty(containerId)) {
+            instanceMap[containerId].Quit();
+        }
+
+        instanceMap[containerId] = createUnityInstance(document.querySelector("#" + containerId), {
+            dataUrl: buildPath + "Build/seed-renderer.data",
+            frameworkUrl: buildPath + "Build/seed-renderer.framework.js",
+            codeUrl: buildPath + "Build/seed-renderer.wasm",
+            streamingAssetsUrl: buildPath + "StreamingAssets",
+            companyName: "DefaultCompany",
+            productName: "SeedSharpRenderer",
+            productVersion: "0.1",
+            matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+            // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+        });
     });
+}
+
+async function UnloadUnityBuild(containerId) {
+    if (typeof instanceMap === "undefined") {
+        return;
+    }
+
+    if (instanceMap.hasOwnProperty(containerId)) {
+        await instanceMap[containerId].Quit();
+        
+    }
 }

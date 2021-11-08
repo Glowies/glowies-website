@@ -1,21 +1,16 @@
 ﻿@inject IJSRuntime JS
 
-<div id=@_unityContainerId></div>
+<iframe src="unity-builds/seed-renderer/index.html" id="seedContainer"></iframe>
 
 <style>
-    #@_unityContainerId {
-        height: 99%;
+    #seedContainer {
+        display: block;
+        height: 100%;
         width: 100%;
         z-index: 0;
     }
 </style>
 
 @code {
-    private const string _unityContainerId = "seedContainer";
-
-    protected override async Task OnInitializedAsync()
-    {
-        var objRef = DotNetObjectReference.Create(this);
-        await JS.InvokeVoidAsync("LoadUnityBuild", _unityContainerId, "seed-renderer");
-    }
+    
 }
