@@ -6,7 +6,7 @@
 
 <MudLayout Class="layout-override">
     <MudSwipeArea OnSwipe="@OnSwipe" Class="layout-override">
-        <MudDrawerContainer Class="">
+        <MudDrawerContainer Class="drawer-container-override">
             <MudDrawer @bind-Open="@_drawerOpen" Variant="@DrawerVariant.Persistent" Anchor="Anchor.Left" DisableOverlay="true">
                 <MudDrawerHeader Class="flex-drawer-header">
                     <MudAvatar Image="assets/img/jiji-blackandwhite.gif"
@@ -44,7 +44,7 @@
         align-items: center;
     }
     .drawer-container-override {
-        position: fixed;
+        z-index: 2;
     }
 </style>
 
@@ -78,7 +78,6 @@
 
     public void OnSwipe(SwipeDirection direction)
     {
-        Console.WriteLine(direction);
         if (direction == SwipeDirection.LeftToRight && !_drawerOpen)
         {
             _drawerOpen = true;

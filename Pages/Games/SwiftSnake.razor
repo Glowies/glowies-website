@@ -163,16 +163,16 @@
                             <br /><br />
                             <MudText Typo="Typo.h5">Score</MudText>
                             Each food gathered is worth a certain amount of points that depends on the value of the combo counter and how many turns (direction changes) took place after the last food was gathered. Taking 3 or less turns awards 4 points, taking 4 or 5 turns awards 2 points and taking 6 or more turns awards only point. The point awarded is multiplied by the combo value (up to a maximum of 10) and then added onto the total score. The code block below shows the calculations that gathering a food leads to:<br>
-                            <pre><code>
+                            <pre style="overflow-x: auto; z-index: 1; position: relative"><code>
     @(@"
-            combo += 1;
-            if(turnCount < 4){
-                score += 4 * Math.min(combo, 10);
-            }else if(turnCount < 6){
-                score += 2 * Math.min(combo, 10);
-            }else{
-                score += 1;
-            }")
+combo += 1;
+if(turnCount < 4){
+    score += 4 * Math.min(combo, 10);
+}else if(turnCount < 6){
+    score += 2 * Math.min(combo, 10);
+}else{
+    score += 1;
+}")
 </code></pre>
                         </MudText>
                     </MudCardContent>
