@@ -1,0 +1,34 @@
+﻿@page "/error"
+@inject NavigationManager NavManager
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="pt-8">
+    <MudText Typo="Typo.h1" Align="Align.Left">404</MudText>
+    <MudText Typo="Typo.h2" GutterBottom="true">Page Not Found</MudText>
+
+    @if (_oldUrl is not null)
+    {
+        <MudText Typo="Typo.body1">
+            Perhaps the page you are looking for is on the old website... <br />
+            Try this: <MudLink Href="@_oldUrl" Underline="Underline.Always">@_oldUrl</MudLink>
+        </MudText>
+    }
+</MudContainer>
+
+
+@code {
+    private string _oldUrl = null;
+    private const string OldWebsiteUrl = "OLD/";
+
+    override protected void OnInitialized()
+    {
+        base.OnInitialized();
+        var relPath = NavManager.ToBaseRelativePath(NavManager.Uri);
+
+        if (relPath.StartsWith(OldWebsiteUrl))
+            return;
+
+        var oldPath = OldWebsiteUrl + relPath;
+
+        _oldUrl = NavManager.ToAbsoluteUri(oldPath).ToString();
+    }
+}
