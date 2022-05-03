@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace glowies_website
 {
@@ -20,6 +21,7 @@ namespace glowies_website
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddMudServices();
+            builder.RootComponents.Add<HeadOutlet>("head::after");
 
             await builder.Build().RunAsync();
         }
