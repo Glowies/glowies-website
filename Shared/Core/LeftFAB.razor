@@ -1,5 +1,5 @@
 ﻿<div class="fab-paper-wrapper">
-    <MudPaper Outlined="true" Class="rounded-0 rounded-r-xl fab-paper" Elevation="3">
+    <MudPaper Outlined="true" Class="rounded-0 rounded-r-xl fab-paper">
         <MudIconButton
                        Color="Color.Primary"
                        Variant="Variant.Text"
@@ -13,19 +13,26 @@
 
 <style>
     .fab-paper-wrapper {
-        position: fixed;
+        position: absolute;
         height: 100vh;
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         align-content: center;
+        padding-top: 16px;
     }
     .fab-paper {
+        z-index: 2;
         display: flex;
         flex: 1;
         align-items: center;
+        flex-direction: row-reverse;
+        width: 52px;
         border: 2px solid white;
-        background-color: rgba(255, 255, 255, 0);
+        transition: width 0.4s;
+    }
+    .fab-paper:hover {
+        width: 60px;
     }
     .fab-button-override {
         margin: 0px;

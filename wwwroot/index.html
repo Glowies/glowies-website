@@ -5,15 +5,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>glowies</title>
+    <link rel="shortcut icon" href="assets/img/jiji-blackandwhite.gif" type="image/x-icon">
+
     <base href="/" />
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
     <link href="glowies-website.styles.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div id="app" style="background-color: #161616; height: 100vh">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%">
+            <img src="assets/img/jiji-blackandwhite.gif"/>
+        </div>
+    </div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -22,6 +27,7 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="js/blazor-interop.js"></script>
 </body>
 
 </html>

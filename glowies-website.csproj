@@ -4,6 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.10" PrivateAssets="all" />
@@ -13,8 +19,22 @@
 
   <ItemGroup>
     <None Remove="Shared\Core\" />
+    <None Remove="Shared\SeedSharp\" />
+    <None Remove="Pages\Games\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shared\Core\" />
+    <Folder Include="Shared\Seed\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\assets\" />
+    <Folder Include="wwwroot\assets\img\" />
+    <Folder Include="Pages\Games\" />
+    <Folder Include="wwwroot\assets\img\swiftsnake\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\js\" />
+    <Content Remove="wwwroot\images\" />
+    <Content Remove="wwwroot\assets\img\" />
+    <Content Remove="wwwroot\assets\img\swiftsnake\" />
   </ItemGroup>
 </Project>
