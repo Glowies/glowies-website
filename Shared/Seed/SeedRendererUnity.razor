@@ -1,6 +1,13 @@
 ﻿@inject IJSRuntime JS
 
-<iframe src="https://static.oktaycomu.com/unity-builds/seed-renderer/index.html" id="seedContainer"></iframe>
+@*
+    Only render after connecting to the circuit.
+    This prevents the prerender flicker.
+*@
+@if (isConnected)
+{
+    <iframe src="https://static.oktaycomu.com/unity-builds/seed-renderer/index.html" id="seedContainer"></iframe>
+}
 
 <style>
     #seedContainer {
@@ -12,5 +19,14 @@
 </style>
 
 @code {
+    private bool isConnected;
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isConnected = true;
+            StateHasChanged();
+        }
+    }
 }
