@@ -5,37 +5,39 @@
 <MudSnackbarProvider />
 
 <MudLayout Class="layout-override">
-    <MudSwipeArea OnSwipe="@OnSwipe" Class="layout-override">
-        <MudDrawerContainer Class="drawer-container-override">
-            <MudDrawer @bind-Open="@_drawerOpen" Variant="@DrawerVariant.Persistent" Anchor="Anchor.Left" DisableOverlay="true">
-                <MudDrawerHeader Class="flex-drawer-header">
-                    <MudAvatar Image="assets/img/jiji-blackandwhite.gif"
-                               Alt="Profile picture of Jiji from Kiki's Delivery Service." />
-                    <MudText Typo="Typo.h6">glowies</MudText>
-                </MudDrawerHeader>
-                <NavMenu />
-            </MudDrawer>
+    <MudFocusTrap DefaultFocus="DefaultFocus.Element">
+        <MudSwipeArea OnSwipe="@OnSwipe" Class="layout-override">
+            <MudDrawerContainer Class="drawer-container-override">
+                <MudDrawer @bind-Open="@_drawerOpen" Variant="@DrawerVariant.Persistent" Anchor="Anchor.Left" DisableOverlay="true">
+                    <MudDrawerHeader Class="flex-drawer-header">
+                        <MudAvatar Image="assets/img/jiji-blackandwhite.gif"
+                                   Alt="Profile picture of Jiji from Kiki's Delivery Service." />
+                        <MudText Typo="Typo.h6">glowies</MudText>
+                    </MudDrawerHeader>
+                    <NavMenu />
+                </MudDrawer>
 
-            <LeftFAB @onclick="@((e) => DrawerToggle())" />
-        </MudDrawerContainer>
+                <LeftFAB @onclick="@((e) => DrawerToggle())" />
+            </MudDrawerContainer>
 
-        <MudMainContent Class="main-content-override">
-            @* Wrap in MudContainer for proper padding/margins *@
-            @Body
-        </MudMainContent>
-    </MudSwipeArea>
+            <MudMainContent Class="main-content-override">
+                @* Wrap in MudContainer for proper padding/margins *@
+                @Body
+            </MudMainContent>
+        </MudSwipeArea>
+    </MudFocusTrap>
 </MudLayout>
 
 <style>
     .layout-override {
         height: 100vh;
         width: 100%;
-        overflow: no-display;
+        overflow: hidden;
     }
     .main-content-override {
         height: 100%;
         padding: 0px;
-        overflow-x: no-display;
+        overflow-x: hidden;
         overflow-y: auto;
     }
     .flex-drawer-header {
