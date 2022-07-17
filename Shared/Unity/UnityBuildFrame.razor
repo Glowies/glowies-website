@@ -6,11 +6,11 @@
 *@
 @if (isConnected)
 {
-    <iframe src="https://static.oktaycomu.com/unity-builds/seed-renderer/index.html" id="seedContainer"></iframe>
+    <iframe src="@SourceUrl" id="unityContainer"></iframe>
 }
 
 <style>
-    #seedContainer {
+    #unityContainer {
         display: block;
         height: 100%;
         width: 100%;
@@ -19,6 +19,9 @@
 </style>
 
 @code {
+    [Parameter]
+    public string SourceUrl { get; set; } = "https://static.oktaycomu.com/unity-builds/kaleidoscope/";
+
     private bool isConnected;
 
     protected override void OnAfterRender(bool firstRender)
