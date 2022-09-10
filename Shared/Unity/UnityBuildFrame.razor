@@ -1,0 +1,35 @@
+﻿@inject IJSRuntime JS
+
+@*
+    Only render after connecting to the circuit.
+    This prevents the prerender flicker.
+*@
+@if (isConnected)
+{
+    <iframe src="@SourceUrl" id="unityContainer"></iframe>
+}
+
+<style>
+    #unityContainer {
+        display: block;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public string SourceUrl { get; set; } = "https://static.oktaycomu.com/unity-builds/kaleidoscope/";
+
+    private bool isConnected;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isConnected = true;
+            StateHasChanged();
+        }
+    }
+}

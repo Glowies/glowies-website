@@ -1,0 +1,22 @@
+﻿<div class="floating-title-wrapper">
+    <MudText Typo="Typo.h1" Class="floating-title" Align="Align.Center">
+        @ChildContent
+    </MudText>
+</div>
+
+<style>
+    .floating-title-wrapper {
+        position: absolute;
+        top: 0px;
+        padding-top: 32px;
+        width: 100vw;
+    }
+    .floating-title {
+
+    }
+</style>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

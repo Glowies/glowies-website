@@ -23,16 +23,13 @@
 
 
 @code {
-    private string _oldUrl = null;
-    private const string OldWebsiteUrl = "OLD/";
+    private string? _oldUrl = null;
+    private const string OldWebsiteUrl = "https://static.oktaycomu.com/OLD/";
 
     override protected void OnInitialized()
     {
         base.OnInitialized();
         var relPath = NavManager.ToBaseRelativePath(NavManager.Uri);
-
-        if (relPath.StartsWith(OldWebsiteUrl))
-            return;
 
         var oldPath = OldWebsiteUrl + relPath;
 
