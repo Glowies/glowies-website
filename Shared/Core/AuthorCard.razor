@@ -1,14 +1,20 @@
 ﻿<MudCard Elevation="16">
     <MudCardHeader>
         <CardHeaderAvatar>
-            <MudAvatar Image="assets/img/jiji-blackandwhite.gif"
-                        Alt="Profile picture of Jiji from Kiki's Delivery Service." />
+            <MudAvatar Rounded="true"
+                       Image="assets/img/jiji-blackandwhite.gif"
+                       Alt="Profile picture of Jiji from Kiki's Delivery Service." />
         </CardHeaderAvatar>
         <CardHeaderContent>
             <MudText Typo="Typo.body1"><b>Oktay Çomu</b></MudText>
             <MudText Typo="Typo.body2">Game Developer</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
+            <MudIconButton Link="https://www.patreon.com/glowies"
+                           Target="_blank"
+                           rel="noopener noreferrer"
+                           Icon="@Icons.Filled.AttachMoney"
+                           Color="Color.Primary" />
             <MudIconButton Link="https://www.qrz.com/db/VE3IQO"
                            Target="_blank"
                            rel="noopener noreferrer"
@@ -32,15 +38,18 @@
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
-        Callsign: <MudText Typo="Typo.button">VE3IQO</MudText> <br />
-        For business inquiries:
-        <MudChip Size="Size.Small" Variant="Variant.Outlined">
-            <MudLink Href="mailto:6l0w135@gmail.com"
-                        Underline="Underline.Always"
-                        Typo="Typo.caption">
-                6l0w135@gmail.com
-            </MudLink>
-        </MudChip>
+        Callsign: <MudText Typo="Typo.button">VE3IQO</MudText>
+        <br />
+
+        <MudContainer Class="d-flex justify-center">
+            <MudChip Size="Size.Medium" Variant="Variant.Outlined">
+                <MudLink Href="mailto:6l0w135@gmail.com"
+                         Underline="Underline.Always"
+                         Typo="Typo.inherit">
+                    6l0w135@gmail.com
+                </MudLink>
+            </MudChip>
+        </MudContainer>
     </MudCardContent>
 </MudCard>
 

@@ -1,0 +1,37 @@
+﻿<MudCard Elevation="16">
+    <MudCardHeader>
+        <CardHeaderAvatar>
+            <MudAvatar Rounded="true"
+                       Image="assets/img/patreon-icon.png"
+                       Alt="Patreon icon." />
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1"><b>glowies</b></MudText>
+            <MudText Typo="Typo.body2">Patreon Page</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudIconButton Link="https://www.patreon.com/glowies"
+                           Target="_blank"
+                           rel="noopener noreferrer"
+                           Icon="@Icons.Filled.AttachMoney"
+                           Color="Color.Primary" />
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        If you enjoy what I create and are feeling generous, please consider supporting me on Patreon.
+        <br />
+        <MudContainer Class="d-flex justify-center">
+            <MudChip Size="Size.Medium" Variant="Variant.Outlined" Class="ml-8 mt-4">
+                <MudLink Href="https://www.patreon.com/glowies"
+                         Underline="Underline.Always"
+                         Typo="Typo.inherit">
+                    https://www.patreon.com/glowies
+                </MudLink>
+            </MudChip>
+         </MudContainer>
+</MudCardContent>
+</MudCard>
+
+@code {
+
+}
