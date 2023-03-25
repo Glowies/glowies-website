@@ -1,0 +1,53 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudCard Elevation="0" Class="info-card">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h5">@Title</MudText>
+                    @if (Subtitle is not null)
+                    {
+                        <MudText Typo="Typo.body2">@Subtitle</MudText>
+                    }
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    @if (GithubLink is not null)
+                    {
+                        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Primary" />
+                    }
+                </CardHeaderActions>
+            </MudCardHeader>
+            <MudCardMedia Image="@ImagePath" Height="250" />
+            <MudCardContent>
+                <MudText Typo="Typo.body1">@Description</MudText>
+            </MudCardContent>
+        </MudCard>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Class="mr-2 mb-2" Variant="Variant.Outlined" Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+<style>
+    .info-card
+    {
+
+    }
+</style>
+
+@code {
+    [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = "Untitled";
+    [Parameter]
+    public string? Subtitle { get; set; }
+    [Parameter]
+    public string? GithubLink { get; set; }
+    [Parameter]
+    public string ImagePath { get; set; } = string.Empty;
+    [Parameter]
+    public RenderFragment? Description { get; set; }
+
+    void Submit() => MudDialog?.Close(DialogResult.Ok(true));
+}
+
