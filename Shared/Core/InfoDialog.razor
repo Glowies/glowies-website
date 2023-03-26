@@ -12,11 +12,11 @@
                 <CardHeaderActions>
                     @if (GithubLink is not null)
                     {
-                        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Primary" />
+                        <MudIconButton Target="_blank" Href="@GithubLink" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Primary" />
                     }
                 </CardHeaderActions>
             </MudCardHeader>
-            <MudCardMedia Image="@ImagePath" Height="250" />
+            <MudCardMedia Image="@ImagePath" Height="300" />
             <MudCardContent>
                 <MudText Typo="Typo.body1">@Description</MudText>
             </MudCardContent>
