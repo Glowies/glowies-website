@@ -1,0 +1,45 @@
+﻿@inject IDialogService DialogService
+
+<MudFab Class="info-fab"
+        Color="Color.Primary"
+        StartIcon="@Icons.Material.Outlined.Info"
+        Size="Size.Medium"
+        OnClick="OpenInfoDialog" />
+
+<style>
+    .info-fab {
+        z-index: 2;
+        position: fixed;
+        right: 32px;
+        bottom: 32px
+    }
+</style>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "Untitled";
+    [Parameter]
+    public string? Subtitle { get; set; }
+    [Parameter]
+    public string? GithubLink { get; set; }
+    [Parameter]
+    public string? ImagePath { get; set; }
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private DialogOptions _dialogOptions = new() { CloseOnEscapeKey = true, NoHeader = true };
+
+    void OpenInfoDialog()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("Title", Title);
+        parameters.Add("Subtitle", Subtitle);
+        parameters.Add("GithubLink", GithubLink);
+        parameters.Add("ImagePath", ImagePath);
+        parameters.Add("Description", ChildContent);
+
+
+        DialogService.Show<InfoDialog>("", parameters, _dialogOptions);
+    }
+}
+

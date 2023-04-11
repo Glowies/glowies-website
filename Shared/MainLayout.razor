@@ -9,7 +9,7 @@
         <MudSwipeArea OnSwipe="@OnSwipe" Class="layout-override">
             <MudDrawerContainer Class="drawer-container-override">
                 <MudDrawer @bind-Open="@_drawerOpen" Variant="@DrawerVariant.Persistent" Anchor="Anchor.Left" DisableOverlay="true">
-                    <MudDrawerHeader Class="flex-drawer-header">
+                    <MudDrawerHeader Class="flex-drawer-header mt-4 mb-6">
                         <MudAvatar Rounded="true"
                                    Image="assets/img/jiji-blackandwhite.gif"
                                    Alt="Profile picture of Jiji from Kiki's Delivery Service." />
@@ -58,7 +58,7 @@
         Palette = new Palette()
         {
             Primary = "#ffffff", //"#bb86fc",
-            Secondary = "#03dac6",
+            Secondary = "#000000",
             Background = Colors.Grey.Darken4, // this is #212121
             Surface = Colors.Grey.Darken4,
             Error = "#cf6679",
