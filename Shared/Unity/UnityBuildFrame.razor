@@ -6,7 +6,7 @@
 *@
 @if (isConnected)
 {
-    <iframe src="@SourceUrl" id="unityContainer"></iframe>
+    <iframe src="@(SourceUrl + SourcePath)" id="unityContainer"></iframe>
 }
 
 <style>
@@ -20,8 +20,11 @@
 
 @code {
     [Parameter]
-    public string SourceUrl { get; set; } = "https://static.oktaycomu.com/unity-builds/kaleidoscope/";
+    public string SourcePath { get; set; } = "kaleidoscope/";
 
+    [Parameter]
+    public string SourceUrl { get; set; } = "https://green-pond-00031030f.5.azurestaticapps.net/";
+    
     private bool isConnected;
 
     protected override void OnAfterRender(bool firstRender)
